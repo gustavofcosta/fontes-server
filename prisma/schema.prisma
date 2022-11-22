@@ -20,12 +20,12 @@ model Project {
   title String
   zip_code String
   cost String
-  done Boolean @default(false)
-  deadline DateTime
-  created_at DateTime @default(now())
-  update_at DateTime @updatedAt
-  username String
-  author User @relation(fields: [authorId], references: [id])
-  authorId String
+  done Boolean? @default(false)
+  deadline DateTime?
+  created_at DateTime? @default(now())
+  update_at DateTime? @updatedAt
+  username String?
+  author User? @relation(fields: [authorId], references: [id])
+  authorId String?
 }
 
