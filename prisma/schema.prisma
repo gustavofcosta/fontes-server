@@ -6,3 +6,25 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Project {
+  id String @id @default(uuid())
+  title String
+  zip_code String
+  cost String
+  done Boolean @default(false)
+  deadline DateTime
+  created_at DateTime @default(now())
+  update_at DateTime @updatedAt
+  username String
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
+}
+
+model User {
+  id String @id @default(uuid())
+  name String 
+  password String
+  username String @unique
+  project Project[]
+}
