@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { BadRequestException } from '@nestjs/common/exceptions';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: CreateUserDto) {
+  async create(createUserDto: Prisma.UserCreateInput) {
     const userNameExist = await this.prisma.user.findUnique({
-      where: { username: data.username },
+      where: { username: createUserDto.username },
     });
 
     if (userNameExist) {
@@ -19,11 +19,7 @@ export class UserService {
       });
     }
 
-    const createUser = await this.prisma.user.create({ data });
-
-    return {
-      createUser,
-    };
+    return await this.prisma.user.create({ data: createUserDto });
   }
 
   async findByUserName(username: string) {

@@ -7,6 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id String @id @default(uuid())
+  name String 
+  password String
+  username String @unique
+  project Project[]
+}
+
 model Project {
   id String @id @default(uuid())
   title String
@@ -21,10 +29,3 @@ model Project {
   authorId String
 }
 
-model User {
-  id String @id @default(uuid())
-  name String 
-  password String
-  username String @unique
-  project Project[]
-}
