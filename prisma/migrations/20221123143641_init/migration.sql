@@ -16,9 +16,9 @@ CREATE TABLE "Project" (
     "cost" DOUBLE PRECISION NOT NULL,
     "done" BOOLEAN DEFAULT false,
     "deadline" TIMESTAMP(3),
+    "username" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "update_at" TIMESTAMP(3),
-    "username" TEXT,
     "authorId" TEXT,
 
     CONSTRAINT "Project_pkey" PRIMARY KEY ("id")

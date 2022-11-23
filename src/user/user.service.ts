@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
-import { BadRequestException } from '@nestjs/common/exceptions';
+import { NotFoundException } from '@nestjs/common/exceptions';
 import { Prisma, User } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -10,27 +10,28 @@ export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const data: Prisma.UserCreateInput = {
-      ...createUserDto,
-      password: await bcrypt.hash(createUserDto.password, 10),
-    };
+    try {
+      const data: Prisma.UserCreateInput = {
+        ...createUserDto,
+        password: await bcrypt.hash(createUserDto.password, 10),
+      };
 
-    const userNameExist = await this.prisma.user.findUnique({
-      where: { username: createUserDto.username },
-    });
-
-    if (userNameExist) {
-      throw new BadRequestException('Erro interno', {
-        cause: new Error(),
-        description: 'username já esta cadastrado',
+      const usernameExist = await this.prisma.user.findUnique({
+        where: { username: createUserDto.username },
       });
+
+      if (usernameExist) {
+        throw new NotFoundException('already registered username');
+      }
+
+      const createUser = await this.prisma.user.create({ data });
+
+      return {
+        ...createUser,
+      };
+    } catch (error) {
+      throw new NotFoundException(error.message);
     }
-
-    const createUser = await this.prisma.user.create({ data });
-
-    return {
-      ...createUser,
-    };
   }
 
   async findByUserName(username: string) {

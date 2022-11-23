@@ -8,24 +8,23 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  name String 
+  id       String    @id @default(uuid())
+  name     String
   password String
-  username String @unique
-  project Project[]
+  username String    @unique
+  project  Project[]
 }
 
 model Project {
-  id String @id @default(uuid())
-  title String
-  zip_code Int
-  cost Float
-  done Boolean? @default(false)
-  deadline DateTime?
+  id         String    @id @default(uuid())
+  title      String
+  zip_code   Int
+  cost       Float
+  done       Boolean?  @default(false)
+  deadline   DateTime?
+  username   String?
   created_at DateTime? @default(now())
-  update_at DateTime? @updatedAt
-  username String?
-  author User? @relation(fields: [authorId], references: [id])
-  authorId String?
+  update_at  DateTime? @updatedAt
+  author     User?     @relation(fields: [authorId], references: [id])
+  authorId   String?
 }
-

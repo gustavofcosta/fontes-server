@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsNumber } from 'class-validator';
 import { Project } from '../entities/project.entity';
 
 export class CreateProjectDto extends Project {
@@ -12,11 +12,10 @@ export class CreateProjectDto extends Project {
   @IsNotEmpty()
   @IsNumber()
   cost: number;
+
+  @IsBoolean()
   done?: boolean;
 
   @IsNotEmpty()
   deadline: Date;
-
-  username?: string;
-  authorId?: string;
 }

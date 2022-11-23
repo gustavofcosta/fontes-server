@@ -7,6 +7,6 @@ export class Project {
   deadline: Date;
   created_at?: Date;
   update_at?: Date;
-  username?: string;
   authorId?: string;
+  username?: string;
 }

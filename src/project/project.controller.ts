@@ -4,6 +4,7 @@ import {
   Post,
   Body,
   Patch,
+  Put,
   Param,
   Delete,
 } from '@nestjs/common';
@@ -16,7 +17,7 @@ export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
 
   @Post()
-  create(@Body() createProjectDto: CreateProjectDto) {
+  create(@Body() createProjectDto: CreateProjectDto, username: string) {
     return this.projectService.create(createProjectDto);
   }
 
@@ -30,9 +31,17 @@ export class ProjectController {
     return this.projectService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
-    return this.projectService.update(id, updateProjectDto);
+    return this.projectService.put(id, updateProjectDto);
+  }
+
+  @Patch(':id/done')
+  updateDone(
+    @Param('id') id: string,
+    @Body() updateProjectDto: UpdateProjectDto,
+  ) {
+    return this.projectService.patch(id, updateProjectDto);
   }
 
   @Delete(':id')
