@@ -5,5 +5,5 @@ export class User {
   name: string;
   password: string;
   username: string;
-  projects: Project[];
+  projects?: Project[];
 }

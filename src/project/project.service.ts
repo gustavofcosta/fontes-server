@@ -27,7 +27,7 @@ export class ProjectService {
     }
   }
 
-  async findAll() {
+  async findAll(): Promise<Project[]> {
     try {
       return await this.prisma.project.findMany();
     } catch (error) {
@@ -35,7 +35,7 @@ export class ProjectService {
     }
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<Project> {
     try {
       if (!id) {
         throw new NotFoundException('this id does not exist');
