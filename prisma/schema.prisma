@@ -18,8 +18,8 @@ model User {
 model Project {
   id String @id @default(uuid())
   title String
-  zip_code String
-  cost String
+  zip_code Int
+  cost Float
   done Boolean? @default(false)
   deadline DateTime?
   created_at DateTime? @default(now())
