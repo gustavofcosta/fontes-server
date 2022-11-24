@@ -13,7 +13,7 @@ export class CreateProjectDto extends Project {
   @IsNumber()
   cost: number;
 
-  @IsBoolean()
+  @IsNotEmpty()
   done?: boolean;
 
   @IsNotEmpty()

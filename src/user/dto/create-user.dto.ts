@@ -6,6 +6,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { Project } from 'src/project/entities/project.entity';
 
 export class CreateUserDto extends User {
   @IsString()
@@ -23,4 +24,7 @@ export class CreateUserDto extends User {
   @IsString()
   @IsNotEmpty()
   username: string;
+
+  @IsNotEmpty()
+  projects?: Project[] | null;
 }

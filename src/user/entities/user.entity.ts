@@ -7,3 +7,4 @@ export class User {
   username: string;
   projects?: Project[];
 }
+
