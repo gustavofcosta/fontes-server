@@ -17,7 +17,7 @@ export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
 
   @Post()
-  create(@Body() createProjectDto: CreateProjectDto, username: string) {
+  create(@Body() createProjectDto: CreateProjectDto) {
     return this.projectService.create(createProjectDto);
   }
 
@@ -49,4 +49,3 @@ export class ProjectController {
     return this.projectService.remove(id);
   }
 }
-

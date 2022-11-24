@@ -8,8 +8,14 @@ Rota com Swagger http://localhost:3000/api
 Instalação das dependências
 $ npm install
 
-Iniciando doker-componse com postgres
+alterar nome .env.exemplo para .env e editar dados
+
+Iniciar doker-componse com postgres:
 docker-compose up -d
+
+
+Migrar banco de dados com prisma:
+npx prisma migrate dev --name init
 ```
 
 ## Running the app

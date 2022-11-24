@@ -25,6 +25,5 @@ export class CreateUserDto extends User {
   @IsNotEmpty()
   username: string;
 
-  @IsNotEmpty()
-  projects?: Project[] | null;
+  projects?: Project[];
 }
