@@ -5,7 +5,11 @@ Rota com Swagger http://localhost:3000/api
 ## Installation
 
 ```bash
+Instalação das dependências
 $ npm install
+
+Iniciando doker-componse com postgres
+docker-compose up -d
 ```
 
 ## Running the app
