@@ -21,7 +21,7 @@ model Project {
   zip_code   Int
   cost       Float
   done       Boolean?  @default(false)
-  deadline   DateTime?
+  // deadline   DateTime?
   username   String?
   created_at DateTime? @default(now())
   update_at  DateTime? @updatedAt

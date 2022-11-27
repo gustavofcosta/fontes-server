@@ -16,6 +16,6 @@ export class CreateProjectDto extends Project {
   @IsNotEmpty()
   done?: boolean;
 
-  @IsNotEmpty()
-  deadline: Date;
+  //@IsNotEmpty()
+  //deadline: Date;
 }

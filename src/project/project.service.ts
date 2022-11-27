@@ -60,13 +60,13 @@ export class ProjectService {
         data: updateProjectDto,
       });
 
-      const { title, zip_code, cost, deadline } = projectId;
+      const { title, zip_code, cost } = projectId;
 
       return {
         title,
         zip_code,
         cost,
-        deadline,
+        //deadline,
       };
     } catch (error) {
       throw new NotFoundException(error.message);
